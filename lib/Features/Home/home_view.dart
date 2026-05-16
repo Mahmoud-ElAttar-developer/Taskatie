@@ -51,7 +51,7 @@ class _HomeViewState extends State<HomeView> {
               Gap(20),
               Expanded(
                 child: ValueListenableBuilder<Box<TaskModel>>(
-                  valueListenable: Hive.box<TaskModel>('tasks').listenable(),
+                  valueListenable: Hive.box<TaskModel>('task').listenable(),
                   builder: (context, box, child) {
                     List<TaskModel> tasks = [];
                     for (var element in box.values) {
