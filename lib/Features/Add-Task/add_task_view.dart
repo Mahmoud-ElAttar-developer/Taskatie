@@ -238,11 +238,11 @@ class _AddTaskViewState extends State<AddTaskView> {
                     width: 157,
                     style: getbodyStyle(color: AppColors.whiteColor),
                     text: 'Create Task',
-                    onPressed: () {
+                    onPressed: () async {
                       if (formkey.currentState!.validate()) {
                         String id =
                             '${titleController.text}$startTime${DateTime.now().millisecond}';
-                        box.put(
+                        await box.put(
                           id,
                           TaskModel(
                             id: id,
