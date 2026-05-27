@@ -34,6 +34,7 @@ class _AddTaskViewState extends State<AddTaskView> {
   void initState() {
     super.initState();
     box = Hive.box('task');
+    box.clear();
   }
 
   // -------------------------------------------------
@@ -41,7 +42,12 @@ class _AddTaskViewState extends State<AddTaskView> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(title: Text('Add Task')),
+      appBar: AppBar(
+        title: Text(
+          'Add Task',
+          style: Theme.of(context).textTheme.displayMedium,
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Form(
@@ -49,13 +55,11 @@ class _AddTaskViewState extends State<AddTaskView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Title',
-                style: getbodyStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              Gap(7),
+              Text('Title', style: Theme.of(context).textTheme.displayMedium),
+              Gap(9),
               TextFormField(
                 controller: titleController,
+                style: Theme.of(context).textTheme.displayMedium,
                 decoration: InputDecoration(hintText: 'Enter title here'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -67,11 +71,12 @@ class _AddTaskViewState extends State<AddTaskView> {
               Gap(15),
               Text(
                 'Description',
-                style: getbodyStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.displayMedium,
               ),
-              Gap(7),
+              Gap(9),
               TextFormField(
                 controller: descriptionController,
+                style: Theme.of(context).textTheme.displayMedium,
                 maxLines: 4,
                 decoration: InputDecoration(hintText: 'Enter description here'),
                 validator: (value) {
@@ -82,19 +87,13 @@ class _AddTaskViewState extends State<AddTaskView> {
                 },
               ),
               Gap(15),
-              Text(
-                'Date',
-                style: getbodyStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              Gap(7),
+              Text('Date', style: Theme.of(context).textTheme.displayMedium),
+              Gap(9),
               TextFormField(
                 readOnly: true,
                 decoration: InputDecoration(
                   hintText: date,
-                  hintStyle: getbodyStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  hintStyle: Theme.of(context).textTheme.displayMedium,
                   suffixIcon: IconButton(
                     onPressed: () {
                       getTaskDate();
@@ -115,20 +114,16 @@ class _AddTaskViewState extends State<AddTaskView> {
                       children: [
                         Text(
                           'Start Time',
-                          style: getbodyStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.displayMedium,
                         ),
-                        Gap(7),
+                        Gap(9),
                         TextFormField(
                           readOnly: true,
                           decoration: InputDecoration(
                             hintText: startTime,
-                            hintStyle: getbodyStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            hintStyle: Theme.of(
+                              context,
+                            ).textTheme.displayMedium,
                             suffixIcon: IconButton(
                               onPressed: () {
                                 getTaskStartTime();
@@ -150,20 +145,16 @@ class _AddTaskViewState extends State<AddTaskView> {
                       children: [
                         Text(
                           'End Time',
-                          style: getbodyStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: Theme.of(context).textTheme.displayMedium,
                         ),
-                        Gap(7),
+                        Gap(9),
                         TextFormField(
                           readOnly: true,
                           decoration: InputDecoration(
                             hintText: endTime,
-                            hintStyle: getbodyStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            hintStyle: Theme.of(
+                              context,
+                            ).textTheme.displayMedium,
                             suffixIcon: IconButton(
                               onPressed: () {
                                 getTaskEndTime();
@@ -180,7 +171,7 @@ class _AddTaskViewState extends State<AddTaskView> {
                   ),
                 ],
               ),
-              Gap(20),
+              Gap(30),
               Row(
                 children: [
                   Row(
@@ -235,7 +226,7 @@ class _AddTaskViewState extends State<AddTaskView> {
 
                   Spacer(),
                   CustomButton(
-                    width: 157,
+                    width: 158,
                     style: getbodyStyle(color: AppColors.whiteColor),
                     text: 'Create Task',
                     onPressed: () async {

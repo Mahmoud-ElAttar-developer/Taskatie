@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/Core/Utils/app_colors.dart';
-import 'package:flutter_application_3/Core/Utils/text_styles.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
@@ -40,11 +38,11 @@ class _SplashViewState extends State<SplashView> {
               ),
               Gap(20),
               Text(
-                '      Taskati',
-                style: getTitleStyle(color: AppColors.primaryColor),
+                ' Taskati',
+                style: Theme.of( context).textTheme.displayLarge,
               ),
               Gap(20),
-              Text('It\'s time to be oraganized', style: getSmallStyle(fontSize: 20)),
+              Text('It\'s time to be oraganized', style: Theme.of( context).textTheme.displayMedium),
             ],
           ),
         ),

@@ -1,0 +1,152 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_application_3/Core/Services/local_storage.dart';
+import 'package:flutter_application_3/Core/Utils/app_colors.dart';
+import 'package:flutter_application_3/Features/Profile/profile.dart';
+import 'package:gap/gap.dart';
+
+void showNameDialog(BuildContext context, name) {
+  var formKey = GlobalKey<FormState>();
+  var textCon = TextEditingController(text: name);
+
+  showModalBottomSheet(
+    isScrollControlled: true,
+    context: context,
+    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(25),
+        topRight: Radius.circular(25),
+      ),
+    ), // RoundedRectangleBorder
+    builder: (BuildContext context) {
+      return Padding(
+        padding: MediaQuery.of(context).viewInsets,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25),
+              topRight: Radius.circular(25),
+            ),
+          ), // BoxDecoration
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextFormField(
+                  controller: textCon,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Your Name mustn\'t be empty';
+                    }
+                    return null;
+                  },
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                  decoration: const InputDecoration(
+                    hintText: 'Enter Your Name',
+                  ), // InputDecoration
+                ), // TextFormField
+                const SizedBox(height: 20), // SizedBox
+                GestureDetector(
+                  onTap: () {
+                    if (formKey.currentState!.validate()) {
+                      AppLocal.cachData(AppLocal.Name_key, textCon.text);
+                      Navigator.of(context).pop();
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const ProfileView(),
+                        ),
+                      ); // MaterialPageRoute
+                    }
+                  },
+                  child: Container(
+                    height: 45,
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: AppColors.primaryColor,
+                    ), // BoxDecoration
+                    child: Text(
+                      'Update Your Name',
+                      style: TextStyle(color: AppColors.whiteColor),
+                    ), // Text
+                  ), // Container
+                ), // GestureDetector
+              ],
+            ), // Column
+          ), // Form
+        ), // Container
+      ); // Padding
+    },
+  );
+}
+
+void showImageDialog(BuildContext context, {onTapCamera, onTapGallery}) {
+  showModalBottomSheet(
+    isScrollControlled: true,
+    context: context,
+    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(25),
+        topRight: Radius.circular(25),
+      ),
+    ), // RoundedRectangleBorder
+    builder: (BuildContext context) {
+      return Padding(
+        padding: MediaQuery.of(context).viewInsets,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(25),
+              topRight: Radius.circular(25),
+            ),
+          ), // BoxDecoration
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: onTapCamera,
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.primaryColor,
+                  ), // BoxDecoration
+                  child: Text(
+                    'Upload from Camera',
+                    style: TextStyle(color: AppColors.whiteColor),
+                  ), // Text
+                ), // Container
+              ), // GestureDetector
+              Gap(10),
+              GestureDetector(
+                onTap: onTapGallery,
+                child: Container(
+                  height: 50,
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.primaryColor,
+                  ), // BoxDecoration
+                  child: Text(
+                    'Upload from Gallery',
+                    style: TextStyle(color: AppColors.whiteColor),
+                  ), // Text
+                ), // Container
+              ), // GestureDetector
+            ],
+          ),
+        ),
+      );
+    },
+  );
+}

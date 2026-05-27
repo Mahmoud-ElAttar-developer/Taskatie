@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/Core/Services/local_storage.dart';
 import 'package:flutter_application_3/Core/Utils/app_colors.dart';
-import 'package:flutter_application_3/Core/Utils/text_styles.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});
@@ -29,7 +29,7 @@ class _HomeHeaderState extends State<HomeHeader> {
       setState(() {
         name = value;
       });
-    }); 
+    });
   }
 
   @override
@@ -39,28 +39,55 @@ class _HomeHeaderState extends State<HomeHeader> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'Holla, ',
-                    style: getTitleStyle(color: AppColors.blackColor),
-                  ),
-
-                  TextSpan(text: name, style: getTitleStyle()),
-                ],
-              ),
+            FutureBuilder(
+              future: AppLocal.getCachedData(AppLocal.Name_key),
+              builder: (context, snapshot) {
+                return Text(
+                  'Holla, ${snapshot.data?.split('').first} ',
+                  style: Theme.of(context).textTheme.displayLarge,
+                );
+              },
             ),
-            Gap(5),
-            Text('Have a nice day', style: getbodyStyle()),
+            Gap(10),
+            Text(
+              'Como te sientes hoy ?',
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
           ],
         ),
         Spacer(),
-        CircleAvatar(
-          radius: 30,
-          backgroundImage: (imagepath != null)
-              ? FileImage(File(imagepath!)) as ImageProvider
-              : const AssetImage('assets/abstract-user-flat-4.png'),
+        GestureDetector(
+          onTap: () async {
+            await context.push('/profile');
+          },
+          child: FutureBuilder(
+            future: AppLocal.getCachedData(AppLocal.Image_key),
+            builder: (context, snapshot) {
+              if (snapshot.data != null) {
+                return CircleAvatar(
+                  radius: 30,
+                  backgroundColor: AppColors.primaryColor,
+                  child: CircleAvatar(
+                    radius: 28,
+                    backgroundImage: (snapshot.data != null)
+                        ? FileImage(File(snapshot.data!)) as ImageProvider
+                        : const AssetImage('assets/abstract-user-flat-4.png'),
+                  ),
+                );
+              } else {
+                return CircleAvatar(
+                  radius: 30,
+                  backgroundColor: AppColors.greyColor,
+                  child: const CircleAvatar(
+                    radius: 28,
+                    backgroundImage: AssetImage(
+                      'assets/abstract-user-flat-4.png',
+                    ),
+                  ),
+                );
+              }
+            },
+          ),
         ),
       ],
     );

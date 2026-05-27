@@ -5,10 +5,7 @@ import 'package:flutter_application_3/Core/Utils/text_styles.dart';
 import 'package:gap/gap.dart';
 
 class TaskItemWidget extends StatelessWidget {
-  const TaskItemWidget({
-    super.key,
-    required this.task,
-  });
+  const TaskItemWidget({super.key, required this.task});
 
   final TaskModel task;
 
@@ -18,7 +15,14 @@ class TaskItemWidget extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(15.0),
       decoration: BoxDecoration(
-        color: AppColors.primaryColor,
+        color: task.color == 0
+            ? AppColors.primaryColor
+            : task.color == 1
+            ? AppColors.orangeColor
+            : task.color == 2
+            ? AppColors.redColor
+            : AppColors.greenColor,
+
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
@@ -28,49 +32,34 @@ class TaskItemWidget extends StatelessWidget {
             children: [
               Text(
                 task.title,
-                style: getTitleStyle(
-                  color: AppColors.whiteColor,
-                ),
+                style: getTitleStyle(color: AppColors.whiteColor),
               ),
               Gap(10),
               Row(
                 children: [
-                  Icon(
-                    Icons.watch_later_outlined,
-                    color: AppColors.whiteColor,
-                  ),
+                  Icon(Icons.watch_later_outlined, color: AppColors.whiteColor),
                   Gap(10),
                   Text(
                     '${task.startTime} : ${task.endTime}',
-                    style: getSmallStyle(
-                      color: AppColors.whiteColor,
-                    ),
+                    style: getSmallStyle(color: AppColors.whiteColor),
                   ),
                 ],
               ),
               Gap(10),
               Text(
                 task.description,
-                style: getbodyStyle(
-                  color: AppColors.whiteColor,
-                ),
+                style: getbodyStyle(color: AppColors.whiteColor),
               ),
             ],
           ),
           Spacer(),
-          Container(
-            color: AppColors.whiteColor,
-            width: .8,
-            height: 90,
-          ),
+          Container(color: AppColors.whiteColor, width: .8, height: 90),
           Gap(10),
           RotatedBox(
             quarterTurns: 3,
             child: Text(
-              task.isCompleted ? 'COMLETED' : 'TODO',
-              style: getbodyStyle(
-                color: AppColors.whiteColor,
-              ),
+              task.isCompleted ? 'Completed' : 'TODO',
+              style: getbodyStyle(color: AppColors.whiteColor),
             ),
           ),
         ],

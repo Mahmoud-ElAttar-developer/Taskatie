@@ -8,6 +8,7 @@ class AppColors {
   static Color redColor = Color(0xFFFF0000);
   static Color greyColor = Color.fromARGB(255, 199, 182, 182);
   static Color blackColor = Colors.black;
+  static Color greenColor = Colors.green;
 
   // dark theme colors
   static Color darkScaffoldBgr = Color(0xFF121212);

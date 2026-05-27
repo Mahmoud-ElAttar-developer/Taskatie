@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 TextStyle getTitleStyle({
-  double fontSize = 24,
-  FontWeight fontWeight = FontWeight.bold,
-  Color color = const Color(0xFF4E5AE8),
+  double fontSize = 22,
+  FontWeight fontWeight = FontWeight.w800,
+  Color color =  Colors.white,
+  
 }) {
-  return TextStyle(fontSize: fontSize, fontWeight: fontWeight, color: color);
+  return GoogleFonts.poppins(fontSize: fontSize, fontWeight: fontWeight, color: color);
 }
 
 TextStyle getbodyStyle({
   double fontSize = 18,
   FontWeight fontWeight = FontWeight.w500,
-  Color color = Colors.black,
+  Color color = Colors.white,
 }) {
-  return TextStyle(fontSize: fontSize, fontWeight: fontWeight, color: color);
+  return GoogleFonts.poppins(fontSize: fontSize, fontWeight: fontWeight, color: color);
 }
 
 TextStyle getSmallStyle({
   double fontSize = 16,
-  FontWeight fontWeight = FontWeight.w500,
-  Color color = Colors.grey,
+  FontWeight fontWeight = FontWeight.w300,
+  Color color = Colors.white,
 }) {
-  return TextStyle(fontSize: fontSize, fontWeight: fontWeight, color: color);
+  return GoogleFonts.poppins(fontSize: fontSize, fontWeight: fontWeight, color: color);
 }

@@ -45,7 +45,7 @@ class _UploadViewState extends State<UploadView> {
                 );
               }
             },
-            child: Text('Done'),
+            child: Text('Done', style:Theme.of( context).textTheme.displaySmall),
           ),
         ],
       ),
@@ -122,7 +122,8 @@ class _UploadViewState extends State<UploadView> {
                     name = value;
                   });
                 },
-                decoration: InputDecoration(hintText: 'Enter your name'),
+                decoration: InputDecoration(hintText: 'Enter your name',
+                hintStyle:Theme.of( context).textTheme.displaySmall),
               ),
             ],
           ),
@@ -136,6 +137,7 @@ class _UploadViewState extends State<UploadView> {
       source: ImageSource.camera,
     );
     if (imagePicked != null) {
+      AppLocal.cachData(AppLocal.Image_key, imagePicked.path);
       setState(() {
         imagepath = imagePicked.path;
       });
@@ -147,6 +149,7 @@ class _UploadViewState extends State<UploadView> {
       source: ImageSource.gallery,
     );
     if (imagePicked != null) {
+      AppLocal.cachData(AppLocal.Image_key, imagePicked.path);
       setState(() {
         imagepath = imagePicked.path;
       });

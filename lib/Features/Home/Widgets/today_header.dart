@@ -16,13 +16,13 @@ class TodayHeaderWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(date, style: getbodyStyle(fontSize: 20)),
+            Text(date, style:  Theme.of( context).textTheme.displayMedium),
             Text('Today', style: getTitleStyle(fontSize: 20)),
           ],
         ),
         Spacer(),
         CustomButton(
-          width: 148,
+          width: 151,
           style: getbodyStyle(color: AppColors.whiteColor),
           text: '+ Add Task',
           onPressed: () {

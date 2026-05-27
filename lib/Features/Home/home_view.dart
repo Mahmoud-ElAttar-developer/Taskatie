@@ -1,9 +1,9 @@
-
-
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/Core/Model/task_model.dart';
 import 'package:flutter_application_3/Core/Utils/app_colors.dart';
+import 'package:flutter_application_3/Core/Utils/text_styles.dart';
+import 'package:flutter_application_3/Features/Home/Widgets/empty_task.dart';
 import 'package:flutter_application_3/Features/Home/Widgets/home_header.dart';
 import 'package:flutter_application_3/Features/Home/Widgets/task_item.dart';
 import 'package:flutter_application_3/Features/Home/Widgets/today_header.dart';
@@ -19,6 +19,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  var _selectedDate = DateTime.now().toIso8601String();
   @override
   Widget build(BuildContext context) {
     String date = DateFormat.yMMMEd().format(DateTime.now());
@@ -32,7 +33,7 @@ class _HomeViewState extends State<HomeView> {
               Gap(20),
               TodayHeaderWidget(date: date),
               Gap(20),
-              // Dtae Time Line-------------
+              // Date Time Line-------------
               DatePicker(
                 DateTime.now(),
                 height: 100,
@@ -40,11 +41,14 @@ class _HomeViewState extends State<HomeView> {
                 initialSelectedDate: DateTime.now(),
                 selectionColor: AppColors.primaryColor,
                 selectedTextColor: Colors.white,
+                monthTextStyle: Theme.of(context).textTheme.displayMedium!,
+                dateTextStyle: Theme.of(context).textTheme.displayLarge!,
+                dayTextStyle: Theme.of(context).textTheme.displayMedium!,
                 onDateChange: (date) {
                   // // New date selected
-                  // setState(() {
-                  //   _selectedValue = date;
-                  // });
+                  setState(() {
+                    _selectedDate = date.toIso8601String();
+                  });
                 },
               ),
               // Tasks List-------------
@@ -55,15 +59,83 @@ class _HomeViewState extends State<HomeView> {
                   builder: (context, box, child) {
                     List<TaskModel> tasks = [];
                     for (var element in box.values) {
-                      tasks.add(element);
+                      if (_selectedDate.split('T').first ==
+                          element.date.split('T').first) {
+                        tasks.add(element);
+                      }
                     }
-
-                    return ListView.builder(
-                      itemCount: tasks.length,
-                      itemBuilder: (context, index) {
-                        return TaskItemWidget(task: tasks[index]);
-                      },
-                    );
+                    if (tasks.isEmpty) {
+                      return const EmptyTask(); // تأكد من استدعاء الويدجت الفاضي بتاعك هنا
+                    } else {
+                      return ListView.builder(
+                        itemCount: tasks.length,
+                        itemBuilder: (context, index) {
+                          return Dismissible(
+                            onDismissed: (direction) {
+                              if (direction == DismissDirection.endToStart) {
+                                box.put(
+                                  tasks[index].id,
+                                  TaskModel(
+                                    id: tasks[index].id,
+                                    title: tasks[index].title,
+                                    description: tasks[index].description,
+                                    date: tasks[index].date,
+                                    startTime: tasks[index].startTime,
+                                    endTime: tasks[index].endTime,
+                                    color: 3,
+                                    isCompleted: true,
+                                  ),
+                                );
+                              } else {
+                                box.delete(tasks[index].id);
+                              }
+                            },
+                            key: UniqueKey(),
+                            background: Container(
+                              color: AppColors.redColor,
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Text(
+                                        ' Delete',
+                                        style: getbodyStyle(
+                                          color: AppColors.whiteColor,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            secondaryBackground: Container(
+                              color: AppColors.greenColor,
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Text(
+                                        ' Completed',
+                                        style: getbodyStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.whiteColor,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            child: TaskItemWidget(task: tasks[index]),
+                          );
+                        },
+                      );
+                    }
                   },
                 ),
               ),
@@ -74,5 +146,3 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
-
-  
