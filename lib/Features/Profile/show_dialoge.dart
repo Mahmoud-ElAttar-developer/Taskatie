@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/Core/Services/local_storage.dart';
 import 'package:flutter_application_3/Core/Utils/app_colors.dart';
-import 'package:flutter_application_3/Features/Profile/profile.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
 void showNameDialog(BuildContext context, name) {
   var formKey = GlobalKey<FormState>();
@@ -17,7 +17,7 @@ void showNameDialog(BuildContext context, name) {
         topLeft: Radius.circular(25),
         topRight: Radius.circular(25),
       ),
-    ), // RoundedRectangleBorder
+    ), 
     builder: (BuildContext context) {
       return Padding(
         padding: MediaQuery.of(context).viewInsets,
@@ -28,7 +28,7 @@ void showNameDialog(BuildContext context, name) {
               topLeft: Radius.circular(25),
               topRight: Radius.circular(25),
             ),
-          ), // BoxDecoration
+          ), 
           child: Form(
             key: formKey,
             child: Column(
@@ -46,19 +46,15 @@ void showNameDialog(BuildContext context, name) {
                   style: TextStyle(color: Theme.of(context).primaryColor),
                   decoration: const InputDecoration(
                     hintText: 'Enter Your Name',
-                  ), // InputDecoration
-                ), // TextFormField
-                const SizedBox(height: 20), // SizedBox
+                  ), 
+                ), 
+                const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
                     if (formKey.currentState!.validate()) {
                       AppLocal.cachData(AppLocal.Name_key, textCon.text);
-                      Navigator.of(context).pop();
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (context) => const ProfileView(),
-                        ),
-                      ); // MaterialPageRoute
+                      context.pop();
+                      context.go('/profile');
                     }
                   },
                   child: Container(
@@ -68,18 +64,18 @@ void showNameDialog(BuildContext context, name) {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: AppColors.primaryColor,
-                    ), // BoxDecoration
+                    ), 
                     child: Text(
                       'Update Your Name',
                       style: TextStyle(color: AppColors.whiteColor),
-                    ), // Text
-                  ), // Container
-                ), // GestureDetector
+                    ), 
+                  ), 
+                ), 
               ],
-            ), // Column
-          ), // Form
-        ), // Container
-      ); // Padding
+            ), 
+          ), 
+        ), 
+      ); 
     },
   );
 }
@@ -95,7 +91,7 @@ void showImageDialog(BuildContext context, {onTapCamera, onTapGallery}) {
         topRight: Radius.circular(25),
       ),
     ), // RoundedRectangleBorder
-    builder: (BuildContext context) {
+    builder: (context) {
       return Padding(
         padding: MediaQuery.of(context).viewInsets,
         child: Container(

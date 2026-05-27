@@ -86,23 +86,20 @@ class _ProfileViewState extends State<ProfileView> {
                       showImageDialog(
                         context,
                         onTapCamera: () async {
-                          await uploadFromCamera().then((value) {
-                            if (!context.mounted)
-                              return; // حل تحذير الـ async gaps
+                          await  uploadFromCamera().then((value) {
                             setState(() {});
                             context.pop('/home');
                           });
                         },
                         onTapGallery: () async {
                           await uploadFromGallery().then((value) {
-                            if (!context.mounted)
-                              return; // حل تحذير الـ async gaps
                             setState(() {});
                             context.pop('/home');
                           });
                         },
                       );
                     },
+
                     child: CircleAvatar(
                       radius: 15,
                       backgroundColor: Theme.of(
