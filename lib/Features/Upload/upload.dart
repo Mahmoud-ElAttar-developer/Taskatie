@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/Core/Services/local_storage.dart';
 import 'package:flutter_application_3/Core/Utils/app_colors.dart';
@@ -31,8 +30,8 @@ class _UploadViewState extends State<UploadView> {
           TextButton(
             onPressed: () {
               if (imagepath != null && name.isNotEmpty) {
-                AppLocal.cachData('image', imagepath!);
-                AppLocal.cachData('name', name);
+                AppLocal.cachData(AppLocal.Image_key, imagepath!);
+                AppLocal.cachData(AppLocal.Name_key, name);
                 context.go('/home');
               } else if (imagepath == null && name.isNotEmpty) {
                 showErrorText(context, 'Please select an image');
@@ -45,7 +44,10 @@ class _UploadViewState extends State<UploadView> {
                 );
               }
             },
-            child: Text('Done', style:Theme.of( context).textTheme.displaySmall),
+            child: Text(
+              'Done',
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
           ),
         ],
       ),
@@ -95,15 +97,16 @@ class _UploadViewState extends State<UploadView> {
               Gap(20),
               CustomButton(
                 width: 250,
-                text: 'Upload from camera',style: getbodyStyle(color: AppColors.whiteColor),
+                text: 'Upload from camera',
+                style: getbodyStyle(color: AppColors.whiteColor),
                 onPressed: () {
                   uploadFromCamera();
                 },
               ),
               Gap(10),
               CustomButton(
-               
-                text: 'Upload from gallery',style: getbodyStyle(color: AppColors.whiteColor),
+                text: 'Upload from gallery',
+                style: getbodyStyle(color: AppColors.whiteColor),
                 onPressed: () {
                   uploadFromGallery();
                 },
@@ -122,8 +125,10 @@ class _UploadViewState extends State<UploadView> {
                     name = value;
                   });
                 },
-                decoration: InputDecoration(hintText: 'Enter your name',
-                hintStyle:Theme.of( context).textTheme.displaySmall),
+                decoration: InputDecoration(
+                  hintText: 'Enter your name',
+                  hintStyle: Theme.of(context).textTheme.displaySmall,
+                ),
               ),
             ],
           ),

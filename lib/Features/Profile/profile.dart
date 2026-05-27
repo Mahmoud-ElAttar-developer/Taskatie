@@ -21,16 +21,27 @@ class ProfileView extends StatefulWidget {
 
 class _ProfileViewState extends State<ProfileView> {
   late Box<bool> modeBox;
-  @override
-  void initState() {
-    super.initState();
-    modeBox = Hive.box('mode');
-    AppLocal.getCachedData(AppLocal.Name_key).then((value) {
-      setState(() {
-        name = value;
-      });
+  // داخل ملف profile.dart في كلاس _ProfileViewState
+@override
+void initState() {
+  super.initState();
+  modeBox = Hive.box('mode');
+  
+  // جلب الاسم المكيش
+  AppLocal.getCachedData(AppLocal.Name_key).then((value) {
+    setState(() {
+      name = value ;
     });
-  }
+  });
+
+  // التعديل الإضافي: جلب مسار الصورة المكيش وتحديث المتغير
+  AppLocal.getCachedData(AppLocal.Image_key).then((value) {
+    setState(() {
+      imagepath = value; // تحديث المسار ليتم عرضه في الـ CircleAvatar
+    });
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {
