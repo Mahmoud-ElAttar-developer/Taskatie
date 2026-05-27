@@ -73,12 +73,12 @@ class _ProfileViewState extends State<ProfileView> {
 
                     child: CircleAvatar(
                       radius: 60,
-                      backgroundImage: imagepath != null && imagepath!.isNotEmpty
-        ? FileImage(File(imagepath!))
-        : const AssetImage('assets/default_avatar.png') as ImageProvider,
-                      ),
+                      backgroundImage:
+                          imagepath != null && imagepath!.isNotEmpty
+                          ? FileImage(File(imagepath!))
+                          : const AssetImage('assets/default_avatar.png')
+                                as ImageProvider,
                     ),
-                    
                   ),
 
                   GestureDetector(
@@ -87,16 +87,18 @@ class _ProfileViewState extends State<ProfileView> {
                         context,
                         onTapCamera: () async {
                           await uploadFromCamera().then((value) {
-                            if (!mounted) return; // حل تحذير الـ async gaps
+                            if (!context.mounted)
+                              return; // حل تحذير الـ async gaps
                             setState(() {});
-                            Navigator.of(context).pop();
+                            context.pop('/home');
                           });
                         },
                         onTapGallery: () async {
                           await uploadFromGallery().then((value) {
-                            if (!mounted) return; // حل تحذير الـ async gaps
+                            if (!context.mounted)
+                              return; // حل تحذير الـ async gaps
                             setState(() {});
-                            Navigator.of(context).pop();
+                            context.pop('/home');
                           });
                         },
                       );
@@ -115,24 +117,7 @@ class _ProfileViewState extends State<ProfileView> {
                   ),
                 ],
               ),
-
               Gap(20),
-              // CustomButton(
-              //   width: 250,
-              //   text: 'Upload from camera',style: getbodyStyle(color: AppColors.whiteColor),
-              //   onPressed: () {
-              //     uploadFromCamera();
-              //   },
-              // ),
-              // Gap(10),
-              // CustomButton(
-
-              //   text: 'Upload from gallery',style: getbodyStyle(color: AppColors.whiteColor),
-              //   onPressed: () {
-              //     uploadFromGallery();
-              //   },
-              // ),
-              // Gap(15),
               Divider(
                 endIndent: 20,
                 indent: 20,
@@ -162,12 +147,11 @@ class _ProfileViewState extends State<ProfileView> {
                       child: Icon(
                         Icons.mode_edit_outline_outlined,
                         color: AppColors.primaryColor,
-                      ), // Icon
-                    ), // Container
-                  ), // IconButton
+                      ),
+                    ),
+                  ),
                 ],
               ),
-         // Row
             ],
           ),
         ),
