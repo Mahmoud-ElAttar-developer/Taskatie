@@ -1,6 +1,7 @@
+import 'package:Taskatie/Core/Utils/app_colors.dart';
+import 'package:Taskatie/Core/Utils/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/Core/Utils/app_colors.dart';
-import 'package:flutter_application_3/Core/Utils/text_styles.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final lightTheme = ThemeData(
@@ -17,6 +18,7 @@ final lightTheme = ThemeData(
   ),
   brightness: Brightness.light,
   appBarTheme: AppBarTheme(
+    systemOverlayStyle: SystemUiOverlayStyle.dark,
     titleTextStyle: getTitleStyle(),
     iconTheme: IconThemeData(color: AppColors.primaryColor),
     backgroundColor: Colors.transparent,
@@ -28,6 +30,7 @@ final lightTheme = ThemeData(
     trackColor: WidgetStateProperty.all(AppColors.blackColor),
   ),
   inputDecorationTheme: InputDecorationTheme(
+    hintStyle: getbodyStyle(color: AppColors.greyColor),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(15),
       borderSide: BorderSide(color: AppColors.primaryColor),
@@ -73,6 +76,7 @@ final darkTheme = ThemeData(
     trackColor: WidgetStateProperty.all(AppColors.whiteColor),
   ),
   inputDecorationTheme: InputDecorationTheme(
+    hintStyle: getbodyStyle(color: AppColors.greyColor),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(15),
       borderSide: BorderSide(color: AppColors.primaryColor),
@@ -90,4 +94,5 @@ final darkTheme = ThemeData(
       borderSide: BorderSide(color: AppColors.redColor),
     ),
   ),
+  fontFamily: GoogleFonts.poppins().fontFamily,
 );

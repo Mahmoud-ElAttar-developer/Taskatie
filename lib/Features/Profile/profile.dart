@@ -1,9 +1,10 @@
 import 'dart:io';
+
+import 'package:Taskatie/Core/Services/local_storage.dart';
+import 'package:Taskatie/Core/Utils/app_colors.dart';
+import 'package:Taskatie/Core/Utils/text_styles.dart';
+import 'package:Taskatie/Features/Profile/show_dialoge.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/Core/Services/local_storage.dart';
-import 'package:flutter_application_3/Core/Utils/app_colors.dart';
-import 'package:flutter_application_3/Core/Utils/text_styles.dart';
-import 'package:flutter_application_3/Features/Profile/show_dialoge.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
@@ -22,26 +23,25 @@ class ProfileView extends StatefulWidget {
 class _ProfileViewState extends State<ProfileView> {
   late Box<bool> modeBox;
   // داخل ملف profile.dart في كلاس _ProfileViewState
-@override
-void initState() {
-  super.initState();
-  modeBox = Hive.box('mode');
-  
-  // جلب الاسم المكيش
-  AppLocal.getCachedData(AppLocal.Name_key).then((value) {
-    setState(() {
-      name = value ;
-    });
-  });
+  @override
+  void initState() {
+    super.initState();
+    modeBox = Hive.box('mode');
 
-  // التعديل الإضافي: جلب مسار الصورة المكيش وتحديث المتغير
-  AppLocal.getCachedData(AppLocal.Image_key).then((value) {
-    setState(() {
-      imagepath = value; // تحديث المسار ليتم عرضه في الـ CircleAvatar
+    // جلب الاسم المكيش
+    AppLocal.getCachedData(AppLocal.Name_key).then((value) {
+      setState(() {
+        name = value;
+      });
     });
-  });
-}
 
+    // التعديل الإضافي: جلب مسار الصورة المكيش وتحديث المتغير
+    AppLocal.getCachedData(AppLocal.Image_key).then((value) {
+      setState(() {
+        imagepath = value; // تحديث المسار ليتم عرضه في الـ CircleAvatar
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -97,15 +97,17 @@ void initState() {
                       showImageDialog(
                         context,
                         onTapCamera: () async {
-                          await  uploadFromCamera().then((value) {
-                            setState(() {});
-                            context.pop('/home');
+                          await uploadFromCamera().then((value) {
+                            setState(() {
+                              context.pop('/home');
+                            });
                           });
                         },
                         onTapGallery: () async {
                           await uploadFromGallery().then((value) {
-                            setState(() {});
-                            context.pop('/home');
+                            setState(() {
+                              context.pop('/home');
+                            });
                           });
                         },
                       );

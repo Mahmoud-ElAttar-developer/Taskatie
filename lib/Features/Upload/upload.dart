@@ -1,10 +1,11 @@
 import 'dart:io';
+
+import 'package:Taskatie/Core/Services/local_storage.dart';
+import 'package:Taskatie/Core/Utils/app_colors.dart';
+import 'package:Taskatie/Core/Utils/text_styles.dart';
+import 'package:Taskatie/Core/Widgets/custom_button.dart';
+import 'package:Taskatie/Core/Widgets/custom_snackbar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/Core/Services/local_storage.dart';
-import 'package:flutter_application_3/Core/Utils/app_colors.dart';
-import 'package:flutter_application_3/Core/Utils/text_styles.dart';
-import 'package:flutter_application_3/Core/Widgets/custom_button.dart';
-import 'package:flutter_application_3/Core/Widgets/custom_snackbar.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';

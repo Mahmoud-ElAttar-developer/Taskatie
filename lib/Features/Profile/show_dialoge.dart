@@ -1,6 +1,6 @@
+import 'package:Taskatie/Core/Services/local_storage.dart';
+import 'package:Taskatie/Core/Utils/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/Core/Services/local_storage.dart';
-import 'package:flutter_application_3/Core/Utils/app_colors.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,7 +17,7 @@ void showNameDialog(BuildContext context, name) {
         topLeft: Radius.circular(25),
         topRight: Radius.circular(25),
       ),
-    ), 
+    ),
     builder: (BuildContext context) {
       return Padding(
         padding: MediaQuery.of(context).viewInsets,
@@ -28,7 +28,7 @@ void showNameDialog(BuildContext context, name) {
               topLeft: Radius.circular(25),
               topRight: Radius.circular(25),
             ),
-          ), 
+          ),
           child: Form(
             key: formKey,
             child: Column(
@@ -46,8 +46,8 @@ void showNameDialog(BuildContext context, name) {
                   style: TextStyle(color: Theme.of(context).primaryColor),
                   decoration: const InputDecoration(
                     hintText: 'Enter Your Name',
-                  ), 
-                ), 
+                  ),
+                ),
                 const SizedBox(height: 20),
                 GestureDetector(
                   onTap: () {
@@ -64,18 +64,18 @@ void showNameDialog(BuildContext context, name) {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: AppColors.primaryColor,
-                    ), 
+                    ),
                     child: Text(
                       'Update Your Name',
                       style: TextStyle(color: AppColors.whiteColor),
-                    ), 
-                  ), 
-                ), 
+                    ),
+                  ),
+                ),
               ],
-            ), 
-          ), 
-        ), 
-      ); 
+            ),
+          ),
+        ),
+      );
     },
   );
 }

@@ -1,7 +1,7 @@
+import 'package:Taskatie/Core/Utils/app_colors.dart';
+import 'package:Taskatie/Core/Utils/text_styles.dart';
+import 'package:Taskatie/Core/Widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_3/Core/Utils/app_colors.dart';
-import 'package:flutter_application_3/Core/Utils/text_styles.dart';
-import 'package:flutter_application_3/Core/Widgets/custom_button.dart';
 import 'package:go_router/go_router.dart';
 
 class TodayHeaderWidget extends StatelessWidget {
@@ -16,7 +16,7 @@ class TodayHeaderWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(date, style:  Theme.of( context).textTheme.displayMedium),
+            Text(date, style: Theme.of(context).textTheme.displayMedium),
             Text('Today', style: getTitleStyle(fontSize: 20)),
           ],
         ),
