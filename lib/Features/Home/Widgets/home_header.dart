@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:Taskatie/Core/Services/local_storage.dart';
-import 'package:Taskatie/Core/Utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
+import 'package:taskatie/Core/Services/local_storage.dart';
+import 'package:taskatie/Core/Utils/app_colors.dart';
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({super.key});

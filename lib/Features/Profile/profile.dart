@@ -1,14 +1,14 @@
 import 'dart:io';
 
-import 'package:Taskatie/Core/Services/local_storage.dart';
-import 'package:Taskatie/Core/Utils/app_colors.dart';
-import 'package:Taskatie/Core/Utils/text_styles.dart';
-import 'package:Taskatie/Features/Profile/show_dialoge.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hive/hive.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:taskatie/Core/Services/local_storage.dart';
+import 'package:taskatie/Core/Utils/app_colors.dart';
+import 'package:taskatie/Core/Utils/text_styles.dart';
+import 'package:taskatie/Features/Profile/show_dialoge.dart';
 
 String? imagepath;
 String name = '';

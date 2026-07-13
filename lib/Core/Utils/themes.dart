@@ -1,8 +1,8 @@
-import 'package:Taskatie/Core/Utils/app_colors.dart';
-import 'package:Taskatie/Core/Utils/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:taskatie/Core/Utils/app_colors.dart';
+import 'package:taskatie/Core/Utils/text_styles.dart';
 
 final lightTheme = ThemeData(
   scaffoldBackgroundColor: AppColors.scaffoldBgr,

@@ -1,15 +1,15 @@
-import 'package:Taskatie/Core/Model/task_model.dart';
-import 'package:Taskatie/Core/Utils/app_colors.dart';
-import 'package:Taskatie/Core/Utils/text_styles.dart';
-import 'package:Taskatie/Features/Home/Widgets/empty_task.dart';
-import 'package:Taskatie/Features/Home/Widgets/home_header.dart';
-import 'package:Taskatie/Features/Home/Widgets/task_item.dart';
-import 'package:Taskatie/Features/Home/Widgets/today_header.dart';
 import 'package:date_picker_timeline/date_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:taskatie/Core/Model/task_model.dart';
+import 'package:taskatie/Core/Utils/app_colors.dart';
+import 'package:taskatie/Core/Utils/text_styles.dart';
+import 'package:taskatie/Features/Home/Widgets/empty_task.dart';
+import 'package:taskatie/Features/Home/Widgets/home_header.dart';
+import 'package:taskatie/Features/Home/Widgets/task_item.dart';
+import 'package:taskatie/Features/Home/Widgets/today_header.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

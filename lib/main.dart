@@ -1,8 +1,8 @@
-import 'package:Taskatie/Core/Functions/go_router.dart';
-import 'package:Taskatie/Core/Model/task_model.dart';
-import 'package:Taskatie/Core/Utils/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:taskatie/Core/Functions/go_router.dart';
+import 'package:taskatie/Core/Model/task_model.dart';
+import 'package:taskatie/Core/Utils/themes.dart';
 
 Future<void> main() async {
   await Hive.initFlutter();

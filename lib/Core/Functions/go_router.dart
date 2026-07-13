@@ -1,9 +1,9 @@
-import 'package:Taskatie/Features/Add-Task/add_task_view.dart';
-import 'package:Taskatie/Features/Home/home_view.dart';
-import 'package:Taskatie/Features/Profile/profile.dart';
-import 'package:Taskatie/Features/Upload/upload.dart';
-import 'package:Taskatie/splash_view.dart';
 import 'package:go_router/go_router.dart';
+import 'package:taskatie/Features/Add-Task/add_task_view.dart';
+import 'package:taskatie/Features/Home/home_view.dart';
+import 'package:taskatie/Features/Profile/profile.dart';
+import 'package:taskatie/Features/Upload/upload.dart';
+import 'package:taskatie/splash_view.dart';
 
 final router = GoRouter(
   routes: [
